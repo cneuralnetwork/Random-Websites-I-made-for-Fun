@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img.ico">
+    <title>Touch the Grass</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #grass-field {
+            width: 100%;
+            height: 100%;
+            background-image: url('img.jpg');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+        .effect {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            animation: ripple 1s ease-out;
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="grass-field"></div>
+    <audio id="rustling-sound" src="voice.wav"></audio>
+
+    <script>
+        const grassField = document.getElementById('grass-field');
+        const rustlingSound = document.getElementById('rustling-sound');
+
+        grassField.addEventListener('click', (e) => {
+            createEffect(e.clientX, e.clientY);
+            playSound();
+        });
+
+        function createEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.className = 'effect';
+            effect.style.left = `${x - 25}px`;
+            effect.style.top = `${y - 25}px`;
+            grassField.appendChild(effect);
+
+            setTimeout(() => {
+                grassField.removeChild(effect);
+            }, 1000);
+        }
+
+        function playSound() {
+            rustlingSound.currentTime = 0;
+            rustlingSound.play();
+        }
+    </script>
+</body>
+</html>
