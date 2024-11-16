@@ -6,3 +6,4 @@
 3. Pomodoro App - https://pomodoroviolet.netlify.app/
 4. RGB Checker - https://rgbchecker.netlify.app/
 5. Grass - https://touchthegrass.netlify.app/
+6. A-Day-Math - https://adaymath.netlify.app/
